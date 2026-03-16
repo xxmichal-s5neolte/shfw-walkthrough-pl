@@ -1,331 +1,312 @@
-# Quick SHFW Configuration Walkthrough
+# Szybki przewodnik konfiguracji SHFW
 
-SHFW is a custom firmware available for flashing via the Scooterhacking Utility app. Configuring it might be challenging for new users. This guide aims to provide a quick and easy way to apply the important basics. The understanding aspect of all this can be overwhelming, but it will come as a side effect of your own testing and thinking as we can't do that for you.
+SHFW to niestandardowy firmware (custom firmware) dostępny do wgrania za pomocą aplikacji Scooterhacking Utility. Konfiguracja może być trudna dla nowych użytkowników. Ten przewodnik ma na celu zapewnienie szybkiego i łatwego sposobu na zastosowanie najważniejszych podstaw. Zrozumienie tego wszystkiego może być przytłaczające, ale przyjdzie jako efekt uboczny twoich własnych testów i przemyśleń — tego nie jesteśmy w stanie zrobić za ciebie.
 
-Join the discussions on [Telegram](https://t.me/scooterhackingchat) and [Discord](https://scooterhack.in/discord).
-<p align="left">
-  <a href="https://discord.gg/scooterhacking" target="_blank">
-    <img src="https://dcbadge.limes.pink/api/server/https://discord.gg/scooterhacking"/>
-  </a>
-</p>
+Dołącz do dyskusji na [Telegramie](https://t.me/scooterhackingchat) i [Discordzie](https://scooterhack.in/discord).
 
+### Instalacja
 
-### Installation
+Aby zainstalować SHFW, wykonaj następujące kroki:
 
-To install SHFW, follow these steps:
+1. Pobierz naszą oficjalną aplikację [Utility](https://utility-beta.cfw.sh/), alternatywnie, aby uzyskać wsparcie dla szerokiej gamy urządzeń, w tym iOS, sprawdź [Lunę](https://luna.cfw.sh/).
 
-1. Download our official app [Utility](https://utility-beta.cfw.sh/), alternatively for wide range device support, including iOS, check out [Luna](https://luna.cfw.sh/).
+2. Obsługiwane modele hulajnóg:
 
-2. Supported Scooter Models:
+      - **Ninebot G30, G30L**: Możesz wgrać ten firmware, jeśli wersja DRV wynosi 1.7.3 lub niżej. Jeśli twój DRV to 1.7.3, musisz wybrać „Attempt Downgrade" przed wgraniem SHFW. Dla wersji DRV powyżej 1.7.3 potrzebny jest ST-Link. Więcej informacji [tutaj](https://joeybabcock.me/wiki/STLink_Ninebot_Max_ESC).
 
-      - **Ninebot G30, G30L**: You can flash this firmware if the DRV version is at 1.7.3 or below. If your DRV is 1.7.3, you need to select "Attempt Downgrade" before SHFW. For DRV versions above 1.7.3, you'll need an ST-Link. Refer to [this](https://joeybabcock.me/wiki/STLink_Ninebot_Max_ESC) for more information.
+      - **Ninebot G2, F2, F2 Plus, F2 Pro**: Każdy model regionalny jest kompatybilny, wymaga odblokowania przez ST-Link.
 
-      - **Ninebot G2, F2, F2 Plus, F2 Pro**: Every regional model is compatible, needs to be unlocked via ST-Link.
-  
-      - **Ninebot ESx**: Every version is supported.
-     
-      - **Exx Series**: [Not E2, E2 Plus, E2 Pro. Only the older E22, E45, etc] You can flash SHFW if the DRV version is below 2.7.0. Else you will need to use a ST-Link.
-  
-      - **Ninebot F-Series**: [Older SHFW 0.3.6] You can flash this firmware if the DRV version is below 5.7.0. Else you will need to use a ST-Link. There are online guides available for this process. The app will prompt for updates even if there's none, be aware. Needs to flash with up to date Utility, then configured with [Utility 2.5](https://utility.cfw.sh/distrib/ScooterHackingUtility-2.5.apk). Do not enable brake boost.
-  
-      - **Ninebot D-Series**: [Currently not working] There is an experimental support for D-Series using the F-Series firmware. It's not known at which DRV version you will need a ST-Link. The guides should be identical to the F-Series.
+      - **Ninebot ESx**: Każda wersja jest obsługiwana.
 
-   - **Xiaomi Scooters**: If the BLE version is at 1.5.5 or above, then you'll need to ST-Link downgrade the dashboard. [ST-Link Downgrade Guide](https://lekrsu.github.io/shfw-walkthrough/stlinking/xiaomi-ble). Attempt DRV downgrade via our app (ScooterHacking Utility) if flashing SHFW fails with a supported BLE version.
+      - **Seria Exx**: [Nie E2, E2 Plus, E2 Pro. Tylko starsze E22, E45 itp.] Możesz wgrać SHFW, jeśli wersja DRV jest poniżej 2.7.0. W przeciwnym razie musisz użyć ST-Linka.
 
-    [Reflasher](https://www.scooterhacking.org/forum/viewtopic.php?t=676), [Webflasher](https://flash.bastelpichi.de/) and [ScooterFlasher](https://github.com/scooterteam/scooterflasher) are programs used for ST-Linking, choose either one if it's needed. 
+      - **Ninebot seria F**: [Starsze SHFW 0.3.6] Możesz wgrać ten firmware, jeśli wersja DRV jest poniżej 5.7.0. W przeciwnym razie musisz użyć ST-Linka. W internecie dostępne są przewodniki tego procesu. Aplikacja będzie prosić o aktualizacje, nawet jeśli ich nie ma — bądź tego świadomy. Wymaga wgrania za pomocą aktualnej wersji Utility, a następnie konfiguracji za pomocą [Utility 2.5](https://utility.cfw.sh/distrib/ScooterHackingUtility-2.5.apk). Nie włączaj wzmocnienia hamulca.
 
-    | Model | Compatible BLE | Compatible DRV |
+      - **Ninebot seria D**: [Obecnie nie działa] Istnieje eksperymentalne wsparcie dla serii D przy użyciu firmware serii F. Nie wiadomo, od jakiej wersji DRV wymagany jest ST-Link. Instrukcje powinny być identyczne jak dla serii F.
+
+   - **Hulajnogi Xiaomi**: Jeśli wersja BLE wynosi 1.5.5 lub wyżej, musisz dokonać downgrade'u dashboardu przez ST-Link. [Przewodnik po downgrade ST-Link](https://lekrsu.github.io/shfw-walkthrough/stlinking/xiaomi-ble). Spróbuj downgrade'u DRV przez naszą aplikację (ScooterHacking Utility), jeśli wgranie SHFW nie powiedzie się z obsługiwaną wersją BLE.
+
+    [Reflasher](https://www.scooterhacking.org/forum/viewtopic.php?t=676), [Webflasher](https://flash.bastelpichi.de/) i [ScooterFlasher](https://github.com/scooterteam/scooterflasher) to programy używane do ST-Linkowania — wybierz dowolny, jeśli jest potrzebny.
+
+    | Model | Kompatybilne BLE | Kompatybilne DRV |
     |:--|:--|:--|
-    |  | *ST-Link if incompatible* | *ST-Link if incompatible* |
-    | Ninebot G30 | All | [Up to 1.7.3](https://joeybabcock.me/wiki/STLink_Ninebot_Max_ESC) |
-    | Ninebot G2 | All | ST-Link |
-    | Ninebot F2, F2 Plus, F2 Pro | All | ST-Link |
-    | Xiaomi Essential, 1s, Pro 2, 3 | Below 1.5.5 | All |
-    | Ninebot EsX | All | All |
-    | Ex Series | All | Below 2.7.0 |
-    | Ninebot E2, E2D, E2 Pro | N/A | N/A |
-    | Ninebot F-Series | All | Below 5.7.0 |
-    | Ninebot D-Series | All  | Experimental (F-Series firmware, unknown) |
+    |  | *ST-Link jeśli niekompatybilne* | *ST-Link jeśli niekompatybilne* |
+    | Ninebot G30 | Wszystkie | [Do 1.7.3](https://joeybabcock.me/wiki/STLink_Ninebot_Max_ESC) |
+    | Ninebot G2 | Wszystkie | ST-Link |
+    | Ninebot F2, F2 Plus, F2 Pro | Wszystkie | ST-Link |
+    | Xiaomi Essential, 1s, Pro 2, 3 | Poniżej 1.5.5 | Wszystkie |
+    | Ninebot EsX | Wszystkie | Wszystkie |
+    | Seria Ex | Wszystkie | Poniżej 2.7.0 |
+    | Ninebot E2, E2D, E2 Pro | N/D | N/D |
+    | Ninebot seria F | Wszystkie | Poniżej 5.7.0 |
+    | Ninebot seria D | Wszystkie | Eksperymentalne (firmware serii F, nieznane) |
 
-3. Flash Procedure:
+3. Procedura flashowania:
 
-   - Open the utility app, connect to the scooter.
-   - Press "Install/update SHFW" and select the version of the highest number, if there are multiple choices. Then, press flash. If it fails, and the above grid claims a supported version, try the "attempt drv downgrade" flash before SHFW.
-      - If you have the newer Gen 3 G30 motor then select the new motor option under the motor config tab. This is automatic with original serial. If you don't know which one you have, compare the motor serial to this:
+   - Otwórz aplikację Utility, połącz się z hulajnogą.
+   - Naciśnij „Install/update SHFW" i wybierz wersję o najwyższym numerze, jeśli jest kilka do wyboru. Następnie naciśnij flash. Jeśli się nie uda, a powyższa tabela wskazuje obsługiwaną wersję, spróbuj opcji „attempt drv downgrade" przed SHFW.
+      - Jeśli masz nowszy silnik Gen 3 G30, wybierz opcję nowego silnika w zakładce konfiguracji silnika. Jest to automatyczne z oryginalnym numerem seryjnym. Jeśli nie wiesz, który masz, porównaj numer seryjny silnika z poniższą tabelą:
 
-      | Motor Serial Number (SN) | Generation           | Models                               |
+      | Numer seryjny silnika (SN) | Generacja | Modele |
       |--------------------------|----------------------|--------------------------------------|
-      | Starts with 6            | First Generation     | Most older models                    |
-      | Starts with 9            | Second Generation    | G30Ps, some G30Lx models             |
-      | Includes PCAH            | Third Generation     | G30P                                 |
-      | Includes PAAH            | Third Generation     | G30E                                 |
-      | Includes PADH/PADJ       | Third Generation     | G30D                                 |
-      
+      | Zaczyna się od 6 | Pierwsza generacja | Większość starszych modeli |
+      | Zaczyna się od 9 | Druga generacja | G30Ps, niektóre modele G30Lx |
+      | Zawiera PCAH | Trzecia generacja | G30P |
+      | Zawiera PAAH | Trzecia generacja | G30E |
+      | Zawiera PADH/PADJ | Trzecia generacja | G30D |
 
-### Usage
 
-Please be aware that the information provided below is intended for practical use, but it should be used with caution. Remember, field weakening, by its nature, will not be efficient.
+### Użytkowanie
 
-#### Peak Current Draw Calculator Features
+Pamiętaj, że poniższe informacje są przeznaczone do praktycznego zastosowania, ale należy z nich korzystać ostrożnie. Pamiętaj, że osłabianie pola magnetycznego (field weakening) z natury nie jest wydajne.
 
-- **Torque Amps Calculation**: Users can input their torque amps (Iq) to calculate the torque component accurately.
-- **Field Weakening Calculation**: By entering the initial flux in A, variable flux in mAh, current max speed in km/h, and start speed in km/h, the calculator determines the flux component (Id), incorporating field weakening effects.
-- **Peak Current Draw**: With the input parameters, the calculator computes the peak current draw (I_total), providing essential insights into the system's maximum electrical demand.
+#### Funkcje kalkulatora szczytowego poboru prądu
 
-To customize these phase limits, check out the Iq and Id sliders under "Field Weakening".
+- **Obliczanie prądu momentu obrotowego**: Użytkownicy mogą wprowadzić swoje ampery momentu obrotowego (Iq), aby dokładnie obliczyć składową momentu obrotowego.
+- **Obliczanie osłabiania pola**: Wprowadzając początkowy strumień w A, zmienny strumień w mAh, aktualną maksymalną prędkość w km/h i prędkość startu w km/h, kalkulator wyznacza składową strumienia (Id), uwzględniając efekty osłabiania pola.
+- **Szczytowy pobór prądu**: Na podstawie parametrów wejściowych kalkulator oblicza szczytowy pobór prądu (I_total), dostarczając istotnych informacji o maksymalnym zapotrzebowaniu elektrycznym systemu.
 
-[**Try the Peak Current Draw Calculator**](https://lekrsu.github.io/shfw-walkthrough/logic/index.html) - A user-friendly tool designed for clarity and efficiency in calculating electrical parameters. Keep in mind, this is peak, not showing actual real life battery draw, but it helps visualize it. Sport, drive and eco curves in Utility, show target battery current, but it is not a limiter, and for low speed compensation, higher current can be temporarily drawn.
+Aby dostosować te limity fazowe, sprawdź suwaki Iq i Id w sekcji „Field Weakening".
 
-#### [Ninebot G30](#ninebot-g30)
+[**Wypróbuj kalkulator szczytowego poboru prądu**](https://lekrsu.github.io/shfw-walkthrough/logic/index.html) — przyjazne dla użytkownika narzędzie zaprojektowane dla jasności i wydajności w obliczaniu parametrów elektrycznych. Pamiętaj, że jest to wartość szczytowa, nie pokazuje rzeczywistego poboru z baterii, ale pomaga to zwizualizować. Krzywe Sport, Drive i Eco w Utility pokazują docelowy prąd baterii, ale nie jest to ogranicznik — przy niskich prędkościach może być tymczasowo pobierany wyższy prąd.
 
-To achieve the top speed for Ninebot G30, follow these configurations:
+#### Ninebot G30
 
-   - Enable "expert view" on the top right.
+Aby osiągnąć maksymalną prędkość dla Ninebot G30, zastosuj następującą konfigurację:
 
-1. Set sport DPC auto curve to 25A, 0.5 quadratic
-   - Configure the other modes as desired, lower current than sport for less acceleration.
-   - Keep the speed limit to off / 0.
-   - Acceleration boost, 50%.
-   - Brake boost, 0-50%, try it out.
-   - Overmodulation on for sport/drive, efficient speed increase by 10%.
+   - Włącz „expert view" w prawym górnym rogu.
 
-You can set eco and drive to lower values, e.g. 10A eco, 25A drive. Drive will use less current since we won't enable field weakening.
+1. Ustaw krzywą sport DPC auto na 25A, 0.5 kwadratowa
+   - Skonfiguruj pozostałe tryby według uznania — niższy prąd niż sport oznacza mniejsze przyspieszenie.
+   - Zostaw limit prędkości wyłączony / 0.
+   - Wzmocnienie przyspieszenia (Acceleration boost): 50%.
+   - Wzmocnienie hamulca (Brake boost): 0-50%, przetestuj.
+   - Nadmodulacja (Overmodulation) włączona dla sport/drive — efektywny wzrost prędkości o 10%.
 
-2. Go to the field weakening tab and enable field weakening for sport mode:
+Możesz ustawić eco i drive na niższe wartości, np. 10A eco, 25A drive. Drive zużyje mniej prądu, ponieważ nie włączymy osłabiania pola.
 
-   ### Normal use:
-   - Configure as follows:
-     - Speed: 20 km/h
-     - Initial: 0A
-     - Variable: 1200
+2. Przejdź do zakładki osłabiania pola (field weakening) i włącz je dla trybu sport:
 
-   ### Higher efficiency, less field weakening:
-   - Configure as follows:
-     - Speed: 20 km/h
-     - Initial: 0A
-     - Variable: 600
+   ### Normalne użytkowanie:
+   - Skonfiguruj następująco:
+     - Prędkość: 20 km/h
+     - Początkowy (Initial): 0A
+     - Zmienny (Variable): 1200
 
-4. Default tire size for Max models are 10", but set 9.4" on G30 to get the dash speed to match GPS speed.
+   ### Wyższa wydajność, mniejsze osłabianie pola:
+   - Skonfiguruj następująco:
+     - Prędkość: 20 km/h
+     - Początkowy (Initial): 0A
+     - Zmienny (Variable): 600
 
-5. Under Motor Settings, select 20 or 24khz.
+4. Domyślny rozmiar opony dla modeli Max to 10", ale ustaw 9.4" na G30, aby prędkość na wyświetlaczu odpowiadała prędkości GPS.
 
-#### [Ninebot G2, F2](#ninebot-g2-f2)
+5. W ustawieniach silnika (Motor Settings) wybierz 20 lub 24 kHz.
 
-To achieve the top speed for G2 and F2, follow these configurations:
+#### Ninebot G2, F2
 
-   - Enable "expert view" on the top right.
+Aby osiągnąć maksymalną prędkość dla G2 i F2, zastosuj następującą konfigurację:
 
-1. Set sport DPC auto curve to 25A, 0.5 quadratic
-   - Configure the other modes as desired, lower current than sport for less acceleration.
-   - Keep the speed limit to off / 0.
-   - Acceleration boost, 100%. However if it turns off, decrease this percentage.
-   - Brake overshoot to 45A, reduces risk of overcurrent from brake activation.
+   - Włącz „expert view" w prawym górnym rogu.
 
-You can set eco and drive to lower values, e.g. 10A eco, 25A drive. Drive will use less current since we won't enable field weakening.
+1. Ustaw krzywą sport DPC auto na 25A, 0.5 kwadratowa
+   - Skonfiguruj pozostałe tryby według uznania — niższy prąd niż sport oznacza mniejsze przyspieszenie.
+   - Zostaw limit prędkości wyłączony / 0.
+   - Wzmocnienie przyspieszenia (Acceleration boost): 100%. Jeśli hulajnoga się wyłącza, zmniejsz ten procent.
+   - Brake overshoot na 45A — zmniejsza ryzyko nadprądu przy aktywacji hamulca.
 
-2. Go to the field weakening tab and enable field weakening for sport mode:
+Możesz ustawić eco i drive na niższe wartości, np. 10A eco, 25A drive. Drive zużyje mniej prądu, ponieważ nie włączymy osłabiania pola.
 
-   ### Normal use:
-   - Configure as follows:
-     - Speed: 20 km/h
-     - Initial: 0A
-     - Variable: 1200
+2. Przejdź do zakładki osłabiania pola (field weakening) i włącz je dla trybu sport:
 
-   ### Higher efficiency, less field weakening:
-   - Configure as follows:
-     - Speed: 20 km/h
-     - Initial: 0A
-     - Variable: 600
+   ### Normalne użytkowanie:
+   - Skonfiguruj następująco:
+     - Prędkość: 20 km/h
+     - Początkowy (Initial): 0A
+     - Zmienny (Variable): 1200
 
-#### [Xiaomi Pro 2](#xiaomi-pro-2)
+   ### Wyższa wydajność, mniejsze osłabianie pola:
+   - Skonfiguruj następująco:
+     - Prędkość: 20 km/h
+     - Początkowy (Initial): 0A
+     - Zmienny (Variable): 600
 
-Configuration for this model depends on the battery serial number and firmware version:
+#### Xiaomi Pro 2
 
-Enable "expert view" on the top right.
+Konfiguracja dla tego modelu zależy od numeru seryjnego baterii i wersji firmware:
 
-### Battery serial number starting with `4XFG` *AND* BMS firmware version with 3 numbers (e.g. 1.4.1) instead of 4 numbers:
-   1. Sport mode, DPC, auto curve 30A, half quadratic (0.5):
-      - Acceleration boost set to 100%.
-      - Brake boost set to 100%.
-      - Overmodulation on for sport/drive.
+Włącz „expert view" w prawym górnym rogu.
 
-### Battery serial number starting with `BFFG` *OR* BMS firmware version with 4 numbers (e.g. 1.1.0.2) instead of 3 numbers:
-   1. Sport mode, DPC, auto curve 20A, half quadratic (0.5):
-      - Acceleration boost set to 80%.
-      - Brake boost set to 100%.
-      - Overmodulation on for sport/drive.
+### Numer seryjny baterii zaczynający się od `4XFG` *ORAZ* wersja firmware BMS z 3 cyframi (np. 1.4.1) zamiast 4:
+   1. Tryb sport, DPC, krzywa auto 30A, pół-kwadratowa (0.5):
+      - Wzmocnienie przyspieszenia ustawione na 100%.
+      - Wzmocnienie hamulca ustawione na 100%.
+      - Nadmodulacja włączona dla sport/drive.
 
-You can set eco and drive to lower values, e.g. 10A eco, 20A drive. Drive will use less current since we won't enable field weakening.
+### Numer seryjny baterii zaczynający się od `BFFG` *LUB* wersja firmware BMS z 4 cyframi (np. 1.1.0.2) zamiast 3:
+   1. Tryb sport, DPC, krzywa auto 20A, pół-kwadratowa (0.5):
+      - Wzmocnienie przyspieszenia ustawione na 80%.
+      - Wzmocnienie hamulca ustawione na 100%.
+      - Nadmodulacja włączona dla sport/drive.
 
-2. Go to the field weakening tab and:
-   - Enable field weakening for sport mode.
-   - Configure as follows: 20 km/h, 0A, 1500.
+Możesz ustawić eco i drive na niższe wartości, np. 10A eco, 20A drive. Drive zużyje mniej prądu, ponieważ nie włączymy osłabiania pola.
 
-4. Under Motor Settings, select 20khz.
+2. Przejdź do zakładki osłabiania pola i:
+   - Włącz osłabianie pola dla trybu sport.
+   - Skonfiguruj następująco: 20 km/h, 0A, 1500.
 
-#### [Xiaomi Mi 3](#xiaomi-mi-3)
+4. W ustawieniach silnika (Motor Settings) wybierz 20 kHz.
 
-For this model, use the following configurations:
-Enable "expert view" on the top right.
+#### Xiaomi Mi 3
 
-1. Sport mode, DPC, auto curve 20A, half quadratic (0.5):
-    - Acceleration boost set to 90%. If the vehicle turns off, decrease this.
-    - Brake boost set to 100%.
-    - Overmodulation on for sport/drive
+Dla tego modelu użyj następującej konfiguracji:
+Włącz „expert view" w prawym górnym rogu.
 
-You can set eco and drive to lower values, e.g. 10A eco, 20A drive. Drive will use less current since we won't enable field weakening.
+1. Tryb sport, DPC, krzywa auto 20A, pół-kwadratowa (0.5):
+    - Wzmocnienie przyspieszenia ustawione na 90%. Jeśli pojazd się wyłącza, zmniejsz wartość.
+    - Wzmocnienie hamulca ustawione na 100%.
+    - Nadmodulacja włączona dla sport/drive.
 
-2. Go to the field weakening tab and:
-   - Enable field weakening for sport mode.
-   - Configure as follows: 20 km/h, 0A, 1500.
+Możesz ustawić eco i drive na niższe wartości, np. 10A eco, 20A drive. Drive zużyje mniej prądu, ponieważ nie włączymy osłabiania pola.
 
-4. Under Motor Settings, select 20khz.
+2. Przejdź do zakładki osłabiania pola i:
+   - Włącz osłabianie pola dla trybu sport.
+   - Skonfiguruj następująco: 20 km/h, 0A, 1500.
 
-#### [Xiaomi Essential, Lite, 1S](#xiaomi-essential-lite-1s)
+4. W ustawieniach silnika (Motor Settings) wybierz 20 kHz.
 
-For Xiaomi Essential & 1S, use these configurations:
+#### Xiaomi Essential, Lite, 1S
 
-   - Enable "expert view" on the top right.
+Dla Xiaomi Essential i 1S użyj następującej konfiguracji:
 
-1. Sport mode, DPC, 18A, fully quadratic (1.0).
-   - Acceleration boost set to 50%.
-   - Brake set to 30A, flat (0.0), if your brake feels weak, slowly increase the brake boost setting.
-   - Overmodulation on for sport/drive.
+   - Włącz „expert view" w prawym górnym rogu.
 
-You can set eco and drive to lower values, e.g. 10A eco, 18A drive. Drive will use less current since we won't enable field weakening.
-  
-2. Go to the field weakening tab and:
+1. Tryb sport, DPC, 18A, w pełni kwadratowa (1.0).
+   - Wzmocnienie przyspieszenia ustawione na 50%.
+   - Hamulec ustawiony na 30A, płaski (0.0) — jeśli hamulec wydaje się słaby, powoli zwiększaj ustawienie wzmocnienia hamulca.
+   - Nadmodulacja włączona dla sport/drive.
 
-   - Enable field weakening for sport mode.
-   - Configure as follows: 15 km/h, 0A, 1500.
+Możesz ustawić eco i drive na niższe wartości, np. 10A eco, 18A drive. Drive zużyje mniej prądu, ponieważ nie włączymy osłabiania pola.
 
-4. Under Motor Settings, select 20.
+2. Przejdź do zakładki osłabiania pola i:
 
-#### [Ninebot EsX, Ex](#ninebot-esx-ex)
+   - Włącz osłabianie pola dla trybu sport.
+   - Skonfiguruj następująco: 15 km/h, 0A, 1500.
 
-For Ninebot EsX, Ex, use these configurations:
+4. W ustawieniach silnika (Motor Settings) wybierz 20.
 
-   - Enable "expert view" on the top right.
+#### Ninebot EsX, Ex
 
-1. Sport mode, DPC, 18A, fully quadratic (1.0).
-   - Acceleration boost, 50%.
-   - Brake, 55A flat (0.0)
-   - Overmodulation on for sport/drive
+Dla Ninebot EsX, Ex użyj następującej konfiguracji:
 
-You can set eco and drive to lower values, e.g. 10A eco, 18A drive. Drive will use less current since we won't enable field weakening.
-  
-2. Go to the field weakening tab and:
-   - Enable field weakening for sport mode.
-   - Configure as follows: 15 km/h, 0A, 1500.
+   - Włącz „expert view" w prawym górnym rogu.
 
-4. Under Motor Settings, select 20khz.
+1. Tryb sport, DPC, 18A, w pełni kwadratowa (1.0).
+   - Wzmocnienie przyspieszenia: 50%.
+   - Hamulec: 55A, płaski (0.0).
+   - Nadmodulacja włączona dla sport/drive.
 
-## Explanation of PI Control and Acceleration Boost
+Możesz ustawić eco i drive na niższe wartości, np. 10A eco, 18A drive. Drive zużyje mniej prądu, ponieważ nie włączymy osłabiania pola.
 
-### PI Control for Voltage Time Conversion
+2. Przejdź do zakładki osłabiania pola i:
+   - Włącz osłabianie pola dla trybu sport.
+   - Skonfiguruj następująco: 15 km/h, 0A, 1500.
 
-The PI control system converts amperes into voltage time. This process scales the voltage time from 0 to 31128, where 31128 represents 100%. This scaling is done for both current components. If the total time exceeds 31128, the values are adjusted down to a new value accordingly.
+4. W ustawieniach silnika (Motor Settings) wybierz 20 kHz.
 
-### Voltage Measurement and Compensation
+## Wyjaśnienie sterowania PI i wzmocnienia przyspieszenia
 
-The system measures only the voltage time, using a 100% duty cycle at maximum potential speed. This method allows the system to perform consistently at different voltages without requiring firmware adjustments. The PWM (Pulse Width Modulation) cycle is kept high continuously, operating similarly to a DC engine.
+### Sterowanie PI do konwersji czasu napięcia
 
-### Implementation Specifics
+System sterowania PI przekształca ampery w czas napięcia. Proces ten skaluje czas napięcia od 0 do 31128, gdzie 31128 reprezentuje 100%. Skalowanie dotyczy obu składowych prądu. Jeśli łączny czas przekracza 31128, wartości są odpowiednio zmniejszane.
 
-- **16-bit Counters:** The system uses 16-bit counters to implement PWM. The counters stop 4 loops before the end of the frequency.
-- **Duty Cycle Limit:** The duty cycle is limited to 95%, as achieving 100% is theoretically possible but impractical.
-- **Voltage Relevance:** Voltage is not directly relevant for control. Instead, the control manages the phase duration. For example:
-  - Phase A might be high for 10 ms
-  - Phase B might be high for 5 ms
-  - Phase C might be high for a shorter duration
+### Pomiar napięcia i kompensacja
 
-However, it is important to note that the actual phase times are much shorter than these examples.
+System mierzy jedynie czas napięcia, używając 100% cyklu pracy przy maksymalnej potencjalnej prędkości. Ta metoda pozwala systemowi działać spójnie przy różnych napięciach bez konieczności dostosowywania firmware. Cykl PWM (modulacja szerokości impulsu) jest utrzymywany na wysokim poziomie w sposób ciągły, działając podobnie do silnika prądu stałego.
 
-### Acceleration Boost
+### Szczegóły implementacji
 
-The Acceleration Boost feature allows for enhanced motor response by temporarily increasing the target current during acceleration. This is controlled via a 0-100% slider, which adjusts the boost intensity.
+- **Liczniki 16-bitowe**: System używa liczników 16-bitowych do implementacji PWM. Liczniki zatrzymują się 4 cykle przed końcem częstotliwości.
+- **Limit cyklu pracy**: Cykl pracy jest ograniczony do 95%, ponieważ osiągnięcie 100% jest teoretycznie możliwe, ale niepraktyczne.
+- **Znaczenie napięcia**: Napięcie nie jest bezpośrednio istotne dla sterowania. Zamiast tego zarządzanie dotyczy czasu trwania fazy. Na przykład:
+  - Faza A może być wysoka przez 10 ms
+  - Faza B może być wysoka przez 5 ms
+  - Faza C może być wysoka przez krótszy czas
 
-When the slider is set, the system requests a higher current for a short duration, effectively doubling the target current when the slider is at 100%. For instance, setting the slider to 50% increases the requested current to 150% of the original target. This temporary boost enables the motor to achieve quicker acceleration without permanently raising the current limit.
+Jednak ważne jest, aby wiedzieć, że rzeczywiste czasy faz są znacznie krótsze niż te przykłady.
 
-However, this technique results in increased electricity consumption as the system draws additional power during the acceleration phase. The necessary energy for this boost is sourced from the battery, leading to a higher overall power usage.
+### Wzmocnienie przyspieszenia (Acceleration Boost)
 
-### Field Weakening Calculations and Logic
+Funkcja wzmocnienia przyspieszenia pozwala na lepszą reakcję silnika poprzez tymczasowe zwiększenie docelowego prądu podczas przyspieszania. Jest to kontrolowane za pomocą suwaka 0-100%, który reguluje intensywność wzmocnienia.
 
-#### What is Field Weakening?
+Po ustawieniu suwaka system żąda wyższego prądu na krótki czas, efektywnie podwajając docelowy prąd, gdy suwak jest ustawiony na 100%. Na przykład ustawienie suwaka na 50% zwiększa żądany prąd do 150% wartości docelowej. To tymczasowe wzmocnienie umożliwia silnikowi osiągnięcie szybszego przyspieszenia bez trwałego podnoszenia limitu prądu.
 
-Field weakening is a technique commonly used with 3-phase electric motors to achieve higher speeds in electric vehicles like scooters. It allows the motor to operate beyond its rated voltage and rpm, which can result in increased top speed. However, implementing field weakening comes with trade-offs, including increased battery usage, higher motor temperatures, and potential additional expenses.
+Jednak ta technika powoduje zwiększone zużycie energii elektrycznej, ponieważ system pobiera dodatkową moc podczas fazy przyspieszania. Energia potrzebna do tego wzmocnienia pochodzi z baterii, co prowadzi do wyższego całkowitego zużycia energii.
 
-#### Field Weakening Flux Calculation
+### Obliczenia i logika osłabiania pola
 
-The calculation for field weakening flux is as follows:
+#### Czym jest osłabianie pola?
 
-field weakening flux = initial + ("current speed" - "field weakening start speed") * (variable / 1000)
+Osłabianie pola (field weakening) to technika powszechnie stosowana w 3-fazowych silnikach elektrycznych, aby osiągnąć wyższe prędkości w pojazdach elektrycznych, takich jak hulajnogi. Pozwala silnikowi na pracę powyżej jego znamionowego napięcia i obrotów, co może skutkować zwiększoną prędkością maksymalną. Jednak wdrożenie osłabiania pola wiąże się z kompromisami, w tym zwiększonym zużyciem baterii, wyższą temperaturą silnika i potencjalnymi dodatkowymi kosztami.
 
-- `initial`: The initial value of the field weakening flux.
-- `"current speed"`: The current speed of the scooter.
-- `"field weakening start speed"`: The speed at which field weakening should start.
-- `variable`: A parameter that influences the rate of flux increase.
+#### Obliczanie strumienia osłabiania pola
 
-Here's a graph of the flux current applied at various speeds comparing the following 2 setups:
-- 7A initial current, 24km/h start speed, 1500mA/km/h variable current
-- 0A initial current, 24km/h start speed, 1500mA/km/h variable current
+Wzór na obliczanie strumienia osłabiania pola jest następujący:
 
-So as to summarize the graph, initial adds field weakening at field weakening speed, with additional current per km/h as per set variable current. Initial current can be used to get over the needed threshhold to reach higher field weakening current by variable. Too much field weakening will just cause heating and potential harm, while too little will limit your speed. It is however optimal for motor and battery performance to not use field weakening at all.
+strumień osłabiania pola = początkowy + ("aktualna prędkość" - "prędkość startu osłabiania pola") * (zmienny / 1000)
 
-<!-- ![graph comparing the above mentioned field weakening setups](/images/comparison_graph.png) -->
+- `początkowy`: wartość początkowa strumienia osłabiania pola.
+- `"aktualna prędkość"`: aktualna prędkość hulajnogi.
+- `"prędkość startu osłabiania pola"`: prędkość, przy której powinno się rozpocząć osłabianie pola.
+- `zmienny`: parametr wpływający na tempo wzrostu strumienia.
 
-<p align="center">
-  <img src="images/comparison_graph.png" width="95%" alt="Field weakening graph">
-</p>
+Poniżej wykres prądu strumienia stosowanego przy różnych prędkościach, porównujący 2 konfiguracje:
+- 7A prąd początkowy, 24 km/h prędkość startu, 1500 mA/km/h prąd zmienny
+- 0A prąd początkowy, 24 km/h prędkość startu, 1500 mA/km/h prąd zmienny
 
-### Custom batteries and BMS emulation
+Podsumowując wykres: początkowy dodaje osłabianie pola przy prędkości startu osłabiania, z dodatkowym prądem na km/h zgodnie z ustawionym prądem zmiennym. Prąd początkowy może być użyty do przekroczenia progu potrzebnego do osiągnięcia wyższego prądu osłabiania przez zmienną. Zbyt duże osłabianie pola spowoduje jedynie nagrzewanie i potencjalne uszkodzenia, podczas gdy zbyt małe ograniczy prędkość. Optymalne dla wydajności silnika i baterii jest jednak nieużywanie osłabiania pola w ogóle.
 
-After installing a custom battery in specific scooter models, you might notice that the display no longer shows the battery charge percentage. This occurs because the scooter's original Battery Management System (BMS) uses a communication cable to provide this information, among other functions. As a workaround, BMS emulation can be employed. This method calculates the battery's charge level based purely on the system's voltage, a viable approach due to the linear relationship between voltage and charge state.
+### Niestandardowe baterie i emulacja BMS
 
-For configuration, access the Utility app and navigate to the 'Config' tab. Here, you will find the BMS emulation option towards the bottom. In this section, enter the details of your battery, including the number of series groups and the total capacity. It's crucial to ensure the minimum and maximum cell group voltages are set correctly, ideally matching or being more conservative than those specified by your BMS. The voltage range for a Li-Ion cell typically spans from 3 to 4.2V, but your BMS may have specific cutoff limits for charging and discharging. Adjust these settings according to your BMS's limits or opt for the default if uncertain.
+Po zainstalowaniu niestandardowej baterii w określonych modelach hulajnóg możesz zauważyć, że wyświetlacz nie pokazuje już procentu naładowania baterii. Dzieje się tak, ponieważ oryginalny system zarządzania baterią (BMS) używa kabla komunikacyjnego do dostarczania tych informacji, między innymi. Jako obejście można zastosować emulację BMS. Ta metoda oblicza poziom naładowania baterii wyłącznie na podstawie napięcia systemu — jest to możliwe dzięki liniowej zależności między napięciem a stanem naładowania.
 
-Note, BMS emulation is necessary only if you've completely replaced the original battery. If you've added an additional pack in series with matching or higher capacity, or if you have another battery in parallel, BMS emulation is not required. In cases of parallel battery configurations, the primary adjustment needed is to disable the charging mode, which can be found in the system settings. This guide aims to facilitate a seamless transition to custom battery usage, ensuring optimal performance and compatibility.
+Aby skonfigurować, otwórz aplikację Utility i przejdź do zakładki „Config". Na dole znajdziesz opcję emulacji BMS. W tej sekcji wprowadź dane swojej baterii, w tym liczbę grup szeregowych i całkowitą pojemność. Ważne jest, aby minimalne i maksymalne napięcia grup ogniw były ustawione prawidłowo, najlepiej odpowiadając lub będąc bardziej konserwatywnym niż te określone przez twój BMS. Zakres napięć dla ogniwa Li-Ion zwykle wynosi od 3 do 4.2V, ale twój BMS może mieć określone limity odcięcia ładowania i rozładowywania. Dostosuj te ustawienia zgodnie z limitami BMS lub wybierz wartości domyślne, jeśli nie jesteś pewien.
 
-Given:
-- `V_min` = Minimum voltage of the battery pack when fully discharged.
-- `V_max` = Maximum voltage of the battery pack when fully charged.
-- `V_current` = Current voltage of the battery pack.
+Uwaga: emulacja BMS jest konieczna tylko wtedy, gdy całkowicie zastąpiłeś oryginalną baterię. Jeśli dodałeś dodatkowy pakiet szeregowo z taką samą lub wyższą pojemnością, lub jeśli masz inną baterię równolegle, emulacja BMS nie jest wymagana. W przypadku konfiguracji z baterią równoległą główna zmiana polega na wyłączeniu trybu ładowania, który można znaleźć w ustawieniach systemu. Ten przewodnik ma na celu ułatwienie płynnego przejścia na niestandardową baterię, zapewniając optymalną wydajność i kompatybilność.
 
-The formula to calculate the battery percentage (`Battery_%`) is:
+Dane:
+- `V_min` = Minimalne napięcie pakietu baterii przy pełnym rozładowaniu.
+- `V_max` = Maksymalne napięcie pakietu baterii przy pełnym naładowaniu.
+- `V_current` = Aktualne napięcie pakietu baterii.
 
-Battery_% = ((V_current - V_min) / (V_max - V_min)) * 100
+Wzór na obliczenie procentu baterii (`Bateria_%`):
 
-Where:
-- `Battery_%` is the state of charge of the battery pack as a percentage.
-- `V_min` is the total voltage of the pack when all cells are at their minimum voltage.
-- `V_max` is the total voltage of the pack when all cells are at their maximum voltage.
-- `V_current` is the current total voltage of the battery pack.
+Bateria_% = ((V_current - V_min) / (V_max - V_min)) * 100
 
-<p align="center">
-  <img src="images/current.gif" width="75%" alt="Ant bms gif showing current use ">
-  <center>Example of what I_total of 42A actually looks on a flat road while requesting 30A torque, 30A flux.</center>
-</p>
+Gdzie:
+- `Bateria_%` to stan naładowania pakietu baterii w procentach.
+- `V_min` to całkowite napięcie pakietu, gdy wszystkie ogniwa są na minimalnym napięciu.
+- `V_max` to całkowite napięcie pakietu, gdy wszystkie ogniwa są na maksymalnym napięciu.
+- `V_current` to aktualne całkowite napięcie pakietu baterii.
 
-#### ADC modding info (G30 & ESx)
+#### Informacje o modyfikacji ADC (G30 i ESx)
 
-Special thanks to BXLR for providing valuable information on the R_adc logic.
+Specjalne podziękowania dla BXLR za dostarczenie cennych informacji na temat logiki R_adc.
 
-[Open Calculator](https://lekrsu.github.io/shfw-walkthrough/calculator/)
+[Otwórz kalkulator](https://lekrsu.github.io/shfw-walkthrough/calculator/)
 
-**Note1**: Make sure to adjust R_adc, as it plays a significant role in ADC modding.
-**Note2**: You can also measure your battery voltage and then increase the divider voltage until the system voltage reading matches your previous meassuring.
-**Note3**: You only need to touch this setting once you changed the resistors on the esc. 
+**Uwaga 1**: Upewnij się, że dostosujesz R_adc, ponieważ odgrywa on znaczącą rolę w modyfikacji ADC.
+**Uwaga 2**: Możesz również zmierzyć napięcie baterii, a następnie zwiększać napięcie dzielnika, aż odczyt napięcia systemowego będzie odpowiadał wcześniejszemu pomiarowi.
+**Uwaga 3**: To ustawienie musisz zmienić dopiero po zmianie rezystorów na ESC.
 
-### License
+### Licencja
 
-This project is licensed under the [MIT License](LICENSE).
+Ten projekt jest licencjonowany na [Licencji MIT](LICENSE).
 
-Please review the [LICENSE](LICENSE) file for detailed terms and conditions.
+Zapoznaj się z plikiem [LICENSE](LICENSE), aby uzyskać szczegółowe warunki.
 
-**Note**: The MIT License is applied to this project. While it allows for wide use and modification, it comes with no warranties or guarantees. The project contributors and maintainers are not responsible for any issues, damages, or liabilities that may arise from the use of this software.
+**Uwaga**: Licencja MIT jest stosowana do tego projektu. Chociaż pozwala na szerokie użytkowanie i modyfikację, nie obejmuje żadnych gwarancji. Współtwórcy i opiekunowie projektu nie ponoszą odpowiedzialności za jakiekolwiek problemy, szkody lub zobowiązania wynikające z użytkowania tego oprogramowania.
 
-### Author Information
+### Informacje o autorze
 
-This guide has been written by **lekrsu**, who can be reached on Discord with the tag `lekrsu` and on Telegram with the username `lekrsu`. You're welcome to send a pull request if you feel like the information needs correction.
-
-<p class="hidden">This guide can be viewed in a prettier form <a href="https://lekrsu.github.io/shfw-walkthrough">here</a>.</p>
+Ten przewodnik został napisany przez **lekrsu**, z którym można się skontaktować na Discordzie pod tagiem `lekrsu` i na Telegramie pod nazwą użytkownika `lekrsu`. Zachęcamy do wysłania pull requesta, jeśli uważasz, że informacje wymagają korekty.

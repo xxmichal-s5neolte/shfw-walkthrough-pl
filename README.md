@@ -90,14 +90,14 @@ Możesz ustawić eco i drive na niższe wartości, np. 10A eco, 25A drive. Drive
    ### Normalne użytkowanie:
    - Skonfiguruj następująco:
      - Prędkość: 20 km/h
-     - Początkowy (Initial): 0A
-     - Zmienny (Variable): 1200
+     - Początkowy (Initial current): 0A
+     - Zmienny (Variable current): 1200
 
    ### Wyższa wydajność, mniejsze osłabianie pola:
    - Skonfiguruj następująco:
      - Prędkość: 20 km/h
-     - Początkowy (Initial): 0A
-     - Zmienny (Variable): 600
+     - Początkowy (Initial current): 0A
+     - Zmienny (Variable current): 600
 
 4. Domyślny rozmiar opony dla modeli Max to 10", ale ustaw 9.4" na G30, aby prędkość na wyświetlaczu odpowiadała prędkości GPS.
 
@@ -122,14 +122,14 @@ Możesz ustawić eco i drive na niższe wartości, np. 10A eco, 25A drive. Drive
    ### Normalne użytkowanie:
    - Skonfiguruj następująco:
      - Prędkość: 20 km/h
-     - Początkowy (Initial): 0A
-     - Zmienny (Variable): 1200
+     - Początkowy (Initial current): 0A
+     - Zmienny (Variable current): 1200
 
    ### Wyższa wydajność, mniejsze osłabianie pola:
    - Skonfiguruj następująco:
      - Prędkość: 20 km/h
-     - Początkowy (Initial): 0A
-     - Zmienny (Variable): 600
+     - Początkowy (Initial current): 0A
+     - Zmienny (Variable current): 600
 
 #### Xiaomi Pro 2
 
